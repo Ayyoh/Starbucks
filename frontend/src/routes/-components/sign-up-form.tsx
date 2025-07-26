@@ -1,8 +1,11 @@
-// ✅ src/routes/~components/sign-up-form.tsx
-
+import { invalidateAndRefetchSession, useSession } from "@/hooks/auth.hook";
 import { authClient } from "@/lib/auth-client";
+import { queryClient } from "@/lib/query-client";
+import { useNavigate } from "@tanstack/react-router";
 
 export function SignUpForm() {
+  const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -14,7 +17,9 @@ export function SignUpForm() {
       password: formData.get("password") as string,
     });
 
-    console.log(res)
+    console.log(res);
+
+    navigate({ to: "/" });
   };
 
   return (

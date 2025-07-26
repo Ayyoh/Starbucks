@@ -5,7 +5,7 @@ import {
   boolean,
   integer,
   serial,
-  numeric
+  numeric,
 } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
@@ -60,21 +60,26 @@ export const verification = pgTable("verification", {
   value: text("value").notNull(),
   expiresAt: timestamp("expires_at").notNull(),
   createdAt: timestamp("created_at").$defaultFn(
-    () => /* @__PURE__ */ new Date(),
+    () => /* @__PURE__ */ new Date()
   ),
   updatedAt: timestamp("updated_at").$defaultFn(
-    () => /* @__PURE__ */ new Date(),
+    () => /* @__PURE__ */ new Date()
   ),
 });
 
 export const hotDrink = pgTable("hotDrink", {
   id: serial("id").primaryKey(),
   name: text("name").notNull().unique(),
-  calories: numeric("calories").notNull(),
-  description: text("description").notNull(),
-  rating: numeric("rating").notNull(),
-  price: numeric("price").notNull(),
+  type: text("type").notNull(),
   image: text("image").notNull(),
+  rating: numeric("rating").notNull(),
+  reviews: integer("reviews").notNull(),
+  description: text("description").notNull(),
+  price: numeric("price").notNull(),
+  calories: numeric("calories").notNull(),
+  caffeine: integer("caffeine").notNull(),
+  sugar: integer("sugar").notNull(),
+  fat: integer("fat").notNull()
 });
 
-export const schema = { user, account, hotDrink, verification, session }
+export const schema = { user, account, hotDrink, verification, session };
