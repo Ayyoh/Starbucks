@@ -1,6 +1,9 @@
+import { useSession } from "@/hooks/auth.hook";
 import { Star } from "lucide-react";
 
 function Hero() {
+  const { data: session } = useSession();
+
   return (
     <div>
       <div className="relative h-[600px] w-full overflow-hidden">
@@ -22,13 +25,15 @@ function Hero() {
             </span>
           </div>
 
+          <span className="text-2xl font-semibold tracking-wider">{session && `Welcome ${session.user.name}`}</span>
+
           <h1 className="text-5xl font-extrabold">
             Crafted with <span className="text-yellow-500">Passion</span>
           </h1>
 
           <p className="max-w-md text-lg font-semibold">
-            Experience the perfect blend of rich flavors and exceptional quality in every cup. Your daily ritual of
-            excellence starts here.
+            Experience the perfect blend of rich flavors and exceptional quality
+            in every cup. Your daily ritual of excellence starts here.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">

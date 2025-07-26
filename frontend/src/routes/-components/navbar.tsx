@@ -2,7 +2,7 @@ import { useSession } from "@/hooks/auth.hook";
 import { authClient } from "@/lib/auth-client";
 import clsx from "clsx";
 import { SiStarbucks } from "react-icons/si";
-import { Button } from "./ui/button";
+import { Button } from "../../components/ui/button";
 import { DrawerDemo } from "@/routes/-components/drawer-demo";
 import { Link, useNavigate } from "@tanstack/react-router";
 
@@ -26,7 +26,7 @@ function Navbar() {
   const { data: session } = useSession();
 
   return (
-    <div>
+    <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md">
       <div className="flex items-center justify-between shadow-sm h-20.5 px-5">
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">

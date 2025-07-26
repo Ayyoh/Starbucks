@@ -13,8 +13,8 @@ function BestSellingHotDrinkCard() {
 
   return (
     <div>
-      <div className="w-94 flex flex-col gap-6">
-        {hotDrinks.slice(0,5).map((bestSellingHotDrinks: any) => (
+      <div className="w-full flex flex-col gap-6">
+        {hotDrinks.slice(0, 5).map((bestSellingHotDrinks: any) => (
           <div
             className="rounded-lg w-full h-auto hover:scale-105 hover:shadow-lg transition-transform ease-in-out"
             key={bestSellingHotDrinks.id}
@@ -64,7 +64,11 @@ function BestSellingHotDrinkCard() {
                     className={clsx("text-xs", colors.menuColors.description)}
                   >
                     {session?.user.name ? (
-                      bestSellingHotDrinks.price
+                      <div>
+                        <span className={clsx("border rounded-full px-3 py-1 text-white font-semibold tracking-wider", colors.menuColors.priceBG)}>
+                          ${bestSellingHotDrinks.price}
+                        </span>
+                      </div>
                     ) : (
                       <span>Sign in to see prices and order</span>
                     )}

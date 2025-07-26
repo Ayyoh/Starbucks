@@ -8,7 +8,8 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useSession } from "@/hooks/auth.hook";
 import { authClient } from "@/lib/auth-client";
-import Navbar from "@/components/navbar";
+import Navbar from "@/routes/-components/navbar";
+import Footer from "./-components/footer-section";
 
 export const Route = createRootRoute({
   loader: async () => {
@@ -32,6 +33,7 @@ export const Route = createRootRoute({
       <>
         <Navbar />
         <Outlet />
+        <Footer />
         <ReactQueryDevtools />
       </>
     );

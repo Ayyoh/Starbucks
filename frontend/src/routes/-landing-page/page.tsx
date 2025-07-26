@@ -9,7 +9,7 @@ export function RouteComponent() {
     <div className="App relative">
       <div>
         {!session && <LandingPage />}
-        {session && <HotDrinksPage />}
+        {session && <LandingPage />}
       </div>
     </div>
   );
