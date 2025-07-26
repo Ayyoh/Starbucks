@@ -20,6 +20,7 @@ import {
   Store,
 } from "lucide-react";
 import { CiCoffeeCup } from "react-icons/ci";
+import LogoutForm from "../-auth/log-out-form";
 
 const colors = {
   textBase: "text-[#1C4A35]",
@@ -93,6 +94,10 @@ export function DrawerDemo() {
             {session?.user.name
               ? `Welcome, ${session.user.name}`
               : "Welcome, Guest"}
+          </div>
+          
+          <div>
+            <LogoutForm />
           </div>
         </div>
       </DrawerContent>

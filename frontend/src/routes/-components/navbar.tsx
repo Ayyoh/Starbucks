@@ -12,17 +12,6 @@ const colors = {
 };
 
 function Navbar() {
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          navigate({ to: "/sign-in" });
-        },
-      },
-    });
-  };
-
   const { data: session } = useSession();
 
   return (
@@ -36,11 +25,7 @@ function Navbar() {
             </span>
           </Link>
         </div>
-        {session?.user.name && (
-          <Button variant="default" onClick={handleLogout}>
-            Logout
-          </Button>
-        )}
+        {/* Here */}
         <DrawerDemo />
       </div>
     </div>

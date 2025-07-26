@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { colors } from "@/components/colors";
-import { Star } from "lucide-react";
+import { Loader, Star } from "lucide-react";
 import { useSession } from "@/hooks/auth.hook";
 import { useHotDrinkList } from "@/hooks/menu.hooks";
 
@@ -8,7 +8,7 @@ function BestSellingHotDrinkCard() {
   const { data: hotDrinks, isLoading, isError } = useHotDrinkList();
   const { data: session } = useSession();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div><Loader className="animate-spin" /></div>;
   if (isError || !hotDrinks) return <div>Failed to load drinks</div>;
 
   return (
