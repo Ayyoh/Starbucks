@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { auth } from "../lib/auth";
 import { route } from "./routes/admin-menu-route";
 import { cors } from "hono/cors";
+import { v2 as cloudinary } from "cloudinary";
 
 const app = new Hono<{
   Variables: {
@@ -19,6 +20,15 @@ app.use(
     credentials: true,
   })
 );
+
+// app.use(async (c, next) => {
+//   cloudinary.config({
+//     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+//     api_key: process.env.CLOUDINARY_API_KEY,
+//     api_secret: process.env.CLOUDINARY_API_SECRET,
+//   });
+//   await next();
+// });
 
 app.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
 

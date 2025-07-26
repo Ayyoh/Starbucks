@@ -76,7 +76,7 @@ export const hotDrink = pgTable("hotDrink", {
   reviews: integer("reviews").notNull(),
   description: text("description").notNull(),
   price: numeric("price").notNull(),
-  calories: numeric("calories").notNull(),
+  calories: integer("calories").notNull(),
   caffeine: integer("caffeine").notNull(),
   sugar: integer("sugar").notNull(),
   fat: integer("fat").notNull()

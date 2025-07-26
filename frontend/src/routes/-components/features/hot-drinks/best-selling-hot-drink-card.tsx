@@ -1,11 +1,10 @@
-import React from "react";
-import { useHotDrinkList } from "../api";
 import clsx from "clsx";
 import { colors } from "@/components/colors";
 import { Star } from "lucide-react";
 import { useSession } from "@/hooks/auth.hook";
+import { useHotDrinkList } from "@/hooks/menu.hooks";
 
-function HotDrinkCard() {
+function BestSellingHotDrinkCard() {
   const { data: hotDrinks, isLoading, isError } = useHotDrinkList();
   const { data: session } = useSession();
 
@@ -15,10 +14,10 @@ function HotDrinkCard() {
   return (
     <div>
       <div className="w-94 flex flex-col gap-6">
-        {hotDrinks.slice(0, 5).map((hotDrinksList: any) => (
+        {hotDrinks.slice(0,5).map((bestSellingHotDrinks: any) => (
           <div
             className="rounded-lg w-full h-auto hover:scale-105 hover:shadow-lg transition-transform ease-in-out"
-            key={hotDrinksList.id}
+            key={bestSellingHotDrinks.id}
           >
             <div className="border px-6 py-4 h-44 rounded-t-lg">
               <div className="flex justify-between">
@@ -28,7 +27,7 @@ function HotDrinkCard() {
                     colors.menuColors.coffeeType
                   )}
                 >
-                  {hotDrinksList.type}
+                  {bestSellingHotDrinks.type}
                 </span>
 
                 <span
@@ -38,7 +37,7 @@ function HotDrinkCard() {
                   )}
                 >
                   <Star size={16} fill="#E5BF4C" className="text-[#E5BF4C]" />
-                  {hotDrinksList.rating}
+                  {bestSellingHotDrinks.rating}
                 </span>
               </div>
             </div>
@@ -51,21 +50,21 @@ function HotDrinkCard() {
                     colors.menuColors.name
                   )}
                 >
-                  {hotDrinksList.name}
+                  {bestSellingHotDrinks.name}
                 </span>
 
                 <div className="flex flex-col gap-6">
                   <span
                     className={clsx("text-sm", colors.menuColors.description)}
                   >
-                    {hotDrinksList.description}
+                    {bestSellingHotDrinks.description}
                   </span>
 
                   <span
                     className={clsx("text-xs", colors.menuColors.description)}
                   >
                     {session?.user.name ? (
-                      hotDrinksList.price
+                      bestSellingHotDrinks.price
                     ) : (
                       <span>Sign in to see prices and order</span>
                     )}
@@ -80,4 +79,4 @@ function HotDrinkCard() {
   );
 }
 
-export default HotDrinkCard;
+export default BestSellingHotDrinkCard;

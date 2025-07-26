@@ -1,5 +1,4 @@
-import React from 'react'
-import HotDrinkCard from './hot-drinks-components/hot-drinks-card';
+import HotDrinkCard from './hot-drinks-card';
 
 function HotDrinksPage() {
   return (

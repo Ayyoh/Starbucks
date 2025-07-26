@@ -54,6 +54,7 @@ export const addHotDrink = async (c: Context) => {
 
     return c.json({ message: "Hot Drink Added", data: newDrink[0] }, 201);
   } catch (error) {
+    console.log(error)
     return c.json({ error: "Something went wrong" }, 500);
   }
 };
