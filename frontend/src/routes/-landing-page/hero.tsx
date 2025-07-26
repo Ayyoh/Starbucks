@@ -25,8 +25,6 @@ function Hero() {
             </span>
           </div>
 
-          <span className="text-2xl font-semibold tracking-wider">{session && `Welcome ${session.user.name}`}</span>
-
           <h1 className="text-5xl font-extrabold">
             Crafted with <span className="text-yellow-500">Passion</span>
           </h1>

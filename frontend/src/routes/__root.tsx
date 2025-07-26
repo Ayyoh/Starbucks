@@ -2,21 +2,20 @@ import {
   Outlet,
   createRootRoute,
   redirect,
-  useNavigate,
-  useStableCallback,
+  useLocation,
 } from "@tanstack/react-router";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useSession } from "@/hooks/auth.hook";
 import { authClient } from "@/lib/auth-client";
 import Navbar from "@/routes/-components/navbar";
 import Footer from "./-components/footer-section";
+import { Toaster } from "sonner";
 
 export const Route = createRootRoute({
   loader: async () => {
     const { data: session } = await authClient.getSession();
 
     const pathname = window.location.pathname;
-    const GUEST_ROUTES = ["/sign-in", "sign-up", "/"];
+    const GUEST_ROUTES = ["/sign-in", "/sign-up", "/"];
 
     const isGuestRoutes = GUEST_ROUTES.includes(pathname);
 
@@ -31,6 +30,7 @@ export const Route = createRootRoute({
   component: () => {
     return (
       <>
+        <Toaster richColors />
         <Navbar />
         <Outlet />
         <Footer />

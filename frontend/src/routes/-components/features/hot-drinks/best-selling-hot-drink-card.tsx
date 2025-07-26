@@ -3,10 +3,18 @@ import { colors } from "@/components/colors";
 import { Loader, Star } from "lucide-react";
 import { useSession } from "@/hooks/auth.hook";
 import { useHotDrinkList } from "@/hooks/menu.hooks";
+import { useEffect } from "react";
+import { queryClient } from "@/lib/query-client"; // Make sure this path is correct
 
 function BestSellingHotDrinkCard() {
   const { data: hotDrinks, isLoading, isError } = useHotDrinkList();
   const { data: session } = useSession();
+
+  useEffect(() => {
+    if (!isLoading && !isError && hotDrinks) {
+      queryClient.setQueryData(["hotDrinks"], hotDrinks);
+    }
+  }, [hotDrinks, isLoading, isError]);
 
   if (isLoading) return <div><Loader className="animate-spin" /></div>;
   if (isError || !hotDrinks) return <div>Failed to load drinks</div>;

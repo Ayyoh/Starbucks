@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerContent,
+  DrawerDescription,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { useSession } from "@/hooks/auth.hook";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import clsx from "clsx";
 import {
   AlignJustify,
@@ -21,6 +22,7 @@ import {
 } from "lucide-react";
 import { CiCoffeeCup } from "react-icons/ci";
 import LogoutForm from "../-auth/log-out-form";
+import React, { useState } from "react";
 
 const colors = {
   textBase: "text-[#1C4A35]",
@@ -42,9 +44,15 @@ const LinkItems = [
 
 export function DrawerDemo() {
   const { data: session } = useSession();
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  React.useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
 
   return (
-    <Drawer>
+    <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <Button variant="outline">
           <AlignJustify />
@@ -54,12 +62,13 @@ export function DrawerDemo() {
         <DrawerTitle className={clsx("font-semibold text-xl", colors.textBase)}>
           Starbucks
         </DrawerTitle>
+        <DrawerDescription />
 
         <div className="mx-auto w-full max-w-sm flex flex-col gap-6">
           <div className="border-b border-gray-300">
             {items.map((item, i) => (
               <div key={i} className="w-30">
-                <Link to={item.Link}>
+                <Link to={item.Link} onClick={() => setOpen(false)}>
                   <span
                     className={clsx(
                       "flex items-center gap-1 text-lg font-semibold",
@@ -74,17 +83,19 @@ export function DrawerDemo() {
             ))}
           </div>
 
-          <div className="flex gap-2">
-            {LinkItems.map((authItem, i) => (
-              <div key={i}>
-                <Link to={authItem.Link}>
-                  <Button variant={authItem.variant as "outline" | "default"}>
-                    {authItem.name}
-                  </Button>
-                </Link>
-              </div>
-            ))}
-          </div>
+          {!session?.user.name && (
+            <div className="flex gap-2">
+              {LinkItems.map((authItem, i) => (
+                <div key={i}>
+                  <Link to={authItem.Link} onClick={() => setOpen(false)}>
+                    <Button variant={authItem.variant as "outline" | "default"}>
+                      {authItem.name}
+                    </Button>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
 
           <div>
             <CiCoffeeCup size={120} fill="#1C4A35" />
@@ -95,7 +106,7 @@ export function DrawerDemo() {
               ? `Welcome, ${session.user.name}`
               : "Welcome, Guest"}
           </div>
-          
+
           <div>
             <LogoutForm />
           </div>
