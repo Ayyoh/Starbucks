@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { authClient } from "@/lib/auth-client";
 import { queryClient } from "../lib/query-client";
 
-const SESSION_KEY = "session";
+export const SESSION_KEY = "session";
 
 const MS_SECOND = 1000;
 const MS_MINUTE = MS_SECOND * 60;
@@ -26,6 +26,9 @@ export function useSession() {
     retry: 1,
     staleTime: TIME.MS_SECOND,
     gcTime: TIME.MS_SECOND,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false, // optional
+    refetchOnReconnect: false,
     // refetchInterval: (query) => {
     //   const queryData = query.state.data;
     //   if (!queryData) return false;

@@ -21,6 +21,7 @@ export const user = pgTable("user", {
   updatedAt: timestamp("updated_at")
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),
+  roles: text("role").notNull().$type<"user" | "admin">().default("user")
 });
 
 export const session = pgTable("session", {
@@ -79,7 +80,7 @@ export const hotDrink = pgTable("hotDrink", {
   calories: integer("calories").notNull(),
   caffeine: integer("caffeine").notNull(),
   sugar: integer("sugar").notNull(),
-  fat: integer("fat").notNull()
+  fat: integer("fat").notNull(),
 });
 
 export const schema = { user, account, hotDrink, verification, session };

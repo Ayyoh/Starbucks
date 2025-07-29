@@ -1,29 +1,30 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "@tanstack/react-router";
 
 function MenuCapsules() {
   const drinks = [
-    { name: "Hot Coffee", link: "" },
-    { name: "Cold Coffee", link: "" },
-    { name: "Hot Tea", link: "" },
-    { name: "Iced Tea", link: "" },
-    { name: "Refreshers", link: "" },
-    { name: "Frappuccino Blended Beverages", link: "" },
-    { name: "Hot Chocolate, Lemonade & More", link: "" },
-    { name: "Bottled Beverages", link: "" },
+    { name: "Hot Coffee", link: "/menu/drinks/hot-coffee" },
+    { name: "Cold Coffee", link: "#" },
+    { name: "Hot Tea", link: "#" },
+    { name: "Iced Tea", link: "#" },
+    { name: "Refreshers", link: "#" },
+    { name: "Frappuccino Blended Beverages", link: "#" },
+    { name: "Hot Chocolate, Lemonade & More", link: "#" },
+    { name: "Bottled Beverages", link: "#" },
   ];
 
   const foods = [
-    { name: "Breakfast", link: "" },
-    { name: "Bakery", link: "" },
-    { name: "Treats", link: "" },
-    { name: "Lunch", link: "" },
-    { name: "Snack", link: "" },
+    { name: "Breakfast", link: "#" },
+    { name: "Bakery", link: "#" },
+    { name: "Treats", link: "#" },
+    { name: "Lunch", link: "#" },
+    { name: "Snack", link: "#" },
   ];
 
   const atHomeCoffees = [
-    { name: "Whole Bean", link: "" },
-    { name: "Via Instant", link: "" },
-    { name: "Shopping Bag", link: "" },
+    { name: "Whole Bean", link: "#" },
+    { name: "Via Instant", link: "#" },
+    { name: "Shopping Bag", link: "#" },
   ];
 
   return (
@@ -39,9 +40,11 @@ function MenuCapsules() {
           <div className="flex flex-col gap-2 w-full">
             {drinks.map((drink, i) => (
               <div key={i} className="w-full">
-                <Button variant="default" className="w-full rounded-full">
-                  {drink.name}
-                </Button>
+                <Link to={drink.link}>
+                  <Button variant="default" className="w-full rounded-full">
+                    {drink.name}
+                  </Button>
+                </Link>
               </div>
             ))}
           </div>

@@ -1,10 +1,8 @@
 import { useSession } from "@/hooks/auth.hook";
-import { authClient } from "@/lib/auth-client";
 import clsx from "clsx";
 import { SiStarbucks } from "react-icons/si";
-import { Button } from "../../components/ui/button";
 import { DrawerDemo } from "@/routes/-components/drawer-demo";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 
 const colors = {
   starbucksText: "text-[#1C4A35]",
@@ -13,6 +11,8 @@ const colors = {
 
 function Navbar() {
   const { data: session } = useSession();
+
+  console.log(session);
 
   return (
     <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md">
@@ -25,7 +25,7 @@ function Navbar() {
             </span>
           </Link>
         </div>
-        {/* Here */}
+
         <DrawerDemo />
       </div>
     </div>
