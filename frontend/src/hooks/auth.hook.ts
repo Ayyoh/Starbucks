@@ -24,7 +24,7 @@ export function useSession() {
       }
     },
     retry: 1,
-    staleTime: TIME.MS_SECOND,
+    staleTime: TIME.MS_MINUTE,
     gcTime: TIME.MS_SECOND,
     refetchOnMount: false,
     refetchOnWindowFocus: false, // optional

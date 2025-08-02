@@ -6,6 +6,7 @@ import {
   integer,
   serial,
   numeric,
+  real,
 } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
@@ -73,7 +74,7 @@ export const hotDrink = pgTable("hotDrink", {
   name: text("name").notNull().unique(),
   type: text("type").notNull(),
   image: text("image").notNull(),
-  rating: numeric("rating").notNull(),
+  rating: real("rating").notNull(),
   reviews: integer("reviews").notNull(),
   description: text("description").notNull(),
   price: numeric("price").notNull(),

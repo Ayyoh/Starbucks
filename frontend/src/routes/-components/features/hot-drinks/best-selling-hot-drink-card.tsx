@@ -16,8 +16,14 @@ function BestSellingHotDrinkCard() {
     }
   }, [hotDrinks, isLoading, isError]);
 
-  if (isLoading) return <div><Loader className="animate-spin" /></div>;
-  if (isError || !hotDrinks) return <div>Failed to load drinks</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Loader className="animate-spin" />
+      </div>
+    );
+  if (!hotDrinks) return <div>No Drinks at the moment</div>;
+  if (isError) return <div>Failed to load drinks</div>;
 
   return (
     <div>
@@ -52,28 +58,24 @@ function BestSellingHotDrinkCard() {
 
             <div className="px-6 bg-white shadow-md py-4 h-auto rounded-b-lg">
               <div className="flex flex-col">
-                <span
-                  className={clsx(
-                    "text-lg font-semibold",
-                    colors.menuColors.name
-                  )}
-                >
+                <span className={clsx("text-lg font-semibold", colors.menuColors.name)}>
                   {bestSellingHotDrinks.name}
                 </span>
 
                 <div className="flex flex-col gap-6">
-                  <span
-                    className={clsx("text-sm", colors.menuColors.description)}
-                  >
+                  <span className={clsx("text-sm", colors.menuColors.description)}>
                     {bestSellingHotDrinks.description}
                   </span>
 
-                  <span
-                    className={clsx("text-xs", colors.menuColors.description)}
-                  >
+                  <span className={clsx("text-xs", colors.menuColors.description)}>
                     {session?.user.name ? (
                       <div>
-                        <span className={clsx("border rounded-full px-3 py-1 text-white font-semibold tracking-wider", colors.menuColors.priceBG)}>
+                        <span
+                          className={clsx(
+                            "border rounded-full px-3 py-1 text-white font-semibold tracking-wider",
+                            colors.menuColors.priceBG
+                          )}
+                        >
                           ${bestSellingHotDrinks.price}
                         </span>
                       </div>

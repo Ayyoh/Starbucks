@@ -29,6 +29,9 @@ importers:
       pg:
         specifier: ^8.16.3
         version: 8.16.3
+      zod:
+        specifier: ^4.0.14
+        version: 4.0.14
     devDependencies:
       '@types/bun':
         specifier: latest
@@ -695,8 +698,8 @@ packages:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
     engines: {node: '>=0.4'}
 
-  zod@4.0.5:
-    resolution: {integrity: sha512-/5UuuRPStvHXu7RS+gmvRf4NXrNxpSllGwDnCBcJZtQsKrviYXm54yDGV2KYNLT5kq0lHGcl7lqWJLgSaG+tgA==}
+  zod@4.0.14:
+    resolution: {integrity: sha512-nGFJTnJN6cM2v9kXL+SOBq3AtjQby3Mv5ySGFof5UGRHrRioSJ5iG680cYNjE/yWk671nROcpPj4hAS8nyLhSw==}
 
 snapshots:
 
@@ -957,7 +960,7 @@ snapshots:
       jose: 5.10.0
       kysely: 0.28.3
       nanostores: 0.11.4
-      zod: 4.0.5
+      zod: 4.0.14
 
   better-call@1.0.12:
     dependencies:
@@ -1169,4 +1172,4 @@ snapshots:
 
   xtend@4.0.2: {}
 
-  zod@4.0.5: {}
+  zod@4.0.14: {}

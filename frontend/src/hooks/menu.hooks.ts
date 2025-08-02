@@ -1,4 +1,4 @@
-import { fetchHotDrinks } from "@/clients/menu.clients";
+import { fetchHotDrinks, type Drink } from "@/clients/menu.clients";
 import { useQuery } from "@tanstack/react-query";
 
 const HOT_DRINKS = 'hotDrinks'

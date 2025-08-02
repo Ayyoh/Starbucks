@@ -1,8 +1,9 @@
-import { useSession } from "@/hooks/auth.hook";
+import { clearAndRefetchSession, invalidateAndRefetchSession, useSession } from "@/hooks/auth.hook";
 import clsx from "clsx";
 import { SiStarbucks } from "react-icons/si";
 import { DrawerDemo } from "@/routes/-components/drawer-demo";
 import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 
 const colors = {
   starbucksText: "text-[#1C4A35]",
@@ -20,11 +21,17 @@ function Navbar() {
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">
             <SiStarbucks size={44} fill="#006241" />
-            <span className={clsx("font-bold text-2xl", colors.starbucksText)}>
-              Starbucks
-            </span>
+            <span className={clsx("font-bold text-2xl", colors.starbucksText)}>Starbucks</span>
           </Link>
         </div>
+        {/* Here */}
+        {session?.user.name === "admin" && (
+          <div>
+            <Link to="/admin-add-hot-drink">
+              <Button variant="default"></Button>
+            </Link>
+          </div>
+        )}
 
         <DrawerDemo />
       </div>

@@ -11,9 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as SignInRouteImport } from './routes/sign-in'
+import { Route as AdminAddHotDrinkRouteImport } from './routes/admin-add-hot-drink'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MenuIndexRouteImport } from './routes/menu/index'
 import { Route as MenuDrinksHotCoffeeRouteImport } from './routes/menu/drinks/hot-coffee'
+import { Route as MenuDrinksDrinkIdRouteImport } from './routes/menu/drinks/$drinkId'
 
 const SignUpRoute = SignUpRouteImport.update({
   id: '/sign-up',
@@ -23,6 +25,11 @@ const SignUpRoute = SignUpRouteImport.update({
 const SignInRoute = SignInRouteImport.update({
   id: '/sign-in',
   path: '/sign-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAddHotDrinkRoute = AdminAddHotDrinkRouteImport.update({
+  id: '/admin-add-hot-drink',
+  path: '/admin-add-hot-drink',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -40,48 +47,77 @@ const MenuDrinksHotCoffeeRoute = MenuDrinksHotCoffeeRouteImport.update({
   path: '/menu/drinks/hot-coffee',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MenuDrinksDrinkIdRoute = MenuDrinksDrinkIdRouteImport.update({
+  id: '/menu/drinks/$drinkId',
+  path: '/menu/drinks/$drinkId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin-add-hot-drink': typeof AdminAddHotDrinkRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/menu': typeof MenuIndexRoute
+  '/menu/drinks/$drinkId': typeof MenuDrinksDrinkIdRoute
   '/menu/drinks/hot-coffee': typeof MenuDrinksHotCoffeeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin-add-hot-drink': typeof AdminAddHotDrinkRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/menu': typeof MenuIndexRoute
+  '/menu/drinks/$drinkId': typeof MenuDrinksDrinkIdRoute
   '/menu/drinks/hot-coffee': typeof MenuDrinksHotCoffeeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin-add-hot-drink': typeof AdminAddHotDrinkRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/menu/': typeof MenuIndexRoute
+  '/menu/drinks/$drinkId': typeof MenuDrinksDrinkIdRoute
   '/menu/drinks/hot-coffee': typeof MenuDrinksHotCoffeeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sign-in' | '/sign-up' | '/menu' | '/menu/drinks/hot-coffee'
+  fullPaths:
+    | '/'
+    | '/admin-add-hot-drink'
+    | '/sign-in'
+    | '/sign-up'
+    | '/menu'
+    | '/menu/drinks/$drinkId'
+    | '/menu/drinks/hot-coffee'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sign-in' | '/sign-up' | '/menu' | '/menu/drinks/hot-coffee'
+  to:
+    | '/'
+    | '/admin-add-hot-drink'
+    | '/sign-in'
+    | '/sign-up'
+    | '/menu'
+    | '/menu/drinks/$drinkId'
+    | '/menu/drinks/hot-coffee'
   id:
     | '__root__'
     | '/'
+    | '/admin-add-hot-drink'
     | '/sign-in'
     | '/sign-up'
     | '/menu/'
+    | '/menu/drinks/$drinkId'
     | '/menu/drinks/hot-coffee'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminAddHotDrinkRoute: typeof AdminAddHotDrinkRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
   MenuIndexRoute: typeof MenuIndexRoute
+  MenuDrinksDrinkIdRoute: typeof MenuDrinksDrinkIdRoute
   MenuDrinksHotCoffeeRoute: typeof MenuDrinksHotCoffeeRoute
 }
 
@@ -99,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/sign-in'
       fullPath: '/sign-in'
       preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-add-hot-drink': {
+      id: '/admin-add-hot-drink'
+      path: '/admin-add-hot-drink'
+      fullPath: '/admin-add-hot-drink'
+      preLoaderRoute: typeof AdminAddHotDrinkRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -122,14 +165,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MenuDrinksHotCoffeeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/menu/drinks/$drinkId': {
+      id: '/menu/drinks/$drinkId'
+      path: '/menu/drinks/$drinkId'
+      fullPath: '/menu/drinks/$drinkId'
+      preLoaderRoute: typeof MenuDrinksDrinkIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminAddHotDrinkRoute: AdminAddHotDrinkRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
   MenuIndexRoute: MenuIndexRoute,
+  MenuDrinksDrinkIdRoute: MenuDrinksDrinkIdRoute,
   MenuDrinksHotCoffeeRoute: MenuDrinksHotCoffeeRoute,
 }
 export const routeTree = rootRouteImport
